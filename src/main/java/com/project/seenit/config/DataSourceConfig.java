@@ -5,30 +5,30 @@ import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
+import javax.sql.DataSource;
 import java.net.URI;
 import java.net.URISyntaxException;
 
 @Configuration
 @Profile("cloud")
-public class DataSource {
+public class DataSourceConfig {
 
     @Bean
-    public javax.sql.DataSource dataSource() throws URISyntaxException {
+    public DataSource dataSource() throws URISyntaxException {
         URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
         String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
 
-        HikariConfig basicDataSource = new HikariConfig();
-        basicDataSource.setJdbcUrl(dbUrl);
-        basicDataSource.setUsername(username);
-        basicDataSource.setPassword(password);
+        HikariConfig hikariConfig = new HikariConfig();
+        hikariConfig.setUsername(username);
+        hikariConfig.setPassword(password);
+        hikariConfig.setJdbcUrl(dbUrl);
+        hikariConfig.setDriverClassName("org.postgresql.Driver");
 
-        return new HikariDataSource(basicDataSource);
+        return new HikariDataSource(hikariConfig);
     }
 }
 
