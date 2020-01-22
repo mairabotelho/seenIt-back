@@ -1,14 +1,17 @@
 package com.project.seenit.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Movie {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long movieId;
     private Long id;
-
     private String username;
     private String title;
     private String original_language;
