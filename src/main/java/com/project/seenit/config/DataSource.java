@@ -16,22 +16,6 @@ import java.net.URISyntaxException;
 public class DataSource {
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws URISyntaxException {
-        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource());
-
-        em.setPackagesToScan(new String[] { "com.project.seenit.model" });
-        em.setPersistenceUnitName("org.hibernate.jpa.HibernatePersistenceProvider");
-
-        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setGenerateDdl(false);
-        em.setJpaVendorAdapter(vendorAdapter);
-
-        return em;
-    }
-
-
-    @Bean
     public javax.sql.DataSource dataSource() throws URISyntaxException {
         URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
