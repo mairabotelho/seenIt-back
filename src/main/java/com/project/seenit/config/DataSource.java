@@ -5,6 +5,8 @@ import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,6 +14,21 @@ import java.net.URISyntaxException;
 @Configuration
 @Profile("cloud")
 public class DataSource {
+
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws URISyntaxException {
+        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+        em.setDataSource(dataSource());
+
+        em.setPackagesToScan(new String[] { "com.project.seenit.model" });
+        em.setPersistenceUnitName("org.hibernate.jpa.HibernatePersistenceProvider");
+
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        vendorAdapter.setGenerateDdl(false);
+        em.setJpaVendorAdapter(vendorAdapter);
+
+        return em;
+    }
 
 
     @Bean
