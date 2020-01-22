@@ -38,8 +38,8 @@ public class MovieService {
         return repository.save(ogMovie);
     }
 
-//    public Boolean deleteMovie(String poster){
-//        return repository.deleteMovieByPosterAndUsername(poster, userService.getCurrentUser());
-//    }
+    public boolean deleteMovie(String username, Long id){
+        return repository.deleteMovieByUsernameAndId(username, id);
+    }
 }
 

@@ -17,4 +17,6 @@ public interface MovieRepository extends CrudRepository<Movie, String> {
 
     @Query("SELECT c FROM Movie c WHERE c.username = ?1 AND c.favorite = true")
     Iterable<Movie> findMovieByUsernameAndFavorite(String username);
+
+    boolean deleteMovieByUsernameAndId(String username, Long id);
 }

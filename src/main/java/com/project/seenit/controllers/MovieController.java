@@ -46,9 +46,9 @@ public class MovieController {
         return new ResponseEntity<>(service.updateMovie(movieTitle, movie), HttpStatus.OK);
     }
 
-//    @DeleteMapping("/movies")
-//    public ResponseEntity<Boolean> deleteByMovieTitle(@RequestParam String poster_path){
-//        return new ResponseEntity<>(service.deleteMovie(poster_path), HttpStatus.OK);
-//    }
+    @DeleteMapping("/movies/{username}")
+    public ResponseEntity<Boolean> deleteByMovieTitle(@PathVariable String username, @RequestParam Long id){
+        return new ResponseEntity<>(service.deleteMovie(username, id), HttpStatus.OK);
+    }
 
 }
