@@ -25,21 +25,21 @@ public class MovieService {
         return repository.findMoviesByUsername(username);
     }
 
-    public Movie findByMovieByTitle(String title){
-        return repository.findMovieByTitle(userService.getCurrentUser(), title);
+    public Movie findByMovieByTitle(String title, String username){
+        return repository.findMovieByTitleAndUsername(title, username);
     }
 
     public Iterable<Movie> findFavoriteMovies(){
         return repository.findMovieByUsernameAndFavorite(userService.getCurrentUser());
     }
 
-    public Movie updateMovie(String title, Movie movie){
-        Movie ogMovie = findByMovieByTitle(title);
-        return repository.save(ogMovie);
-    }
+//    public Movie updateMovie(String title, Movie movie){
+////        Movie ogMovie = findByMovieByTitle(title);
+////        return repository.save(ogMovie);
+////    }
 
-//    public Boolean deleteMovie(String poster){
-//        return repository.deleteMovieByPosterAndUsername(poster, userService.getCurrentUser());
-//    }
+    public boolean deleteMovie(String username, Long id){
+        return repository.deleteMovieByUsernameAndId(username, id);
+    }
 }
 

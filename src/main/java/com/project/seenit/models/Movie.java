@@ -1,14 +1,17 @@
 package com.project.seenit.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Movie {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long movieId;
     private Long id;
-
     private String username;
     private String title;
     private String original_language;
@@ -16,6 +19,7 @@ public class Movie {
     private String overview;
     private String release_date;
     private String poster_path;
+    private String backdrop_path;
     private String popularity;
     private String comment;
     private Double rate;
@@ -23,6 +27,23 @@ public class Movie {
     private boolean watchlist;
 
     public Movie() {
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getBackdrop_path() {
+        return backdrop_path;
+    }
+
+    public void setBackdrop_path(String backdrop_path) {
+        this.backdrop_path = backdrop_path;
     }
 
     public String getUsername() {

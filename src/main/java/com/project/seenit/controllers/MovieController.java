@@ -31,8 +31,8 @@ public class MovieController {
     }
 
     @GetMapping("/movies")
-    public ResponseEntity<Movie> findByMovieTitle(@RequestParam String movieTitle){
-        return new ResponseEntity<>(service.findByMovieByTitle(movieTitle), HttpStatus.OK);
+    public ResponseEntity<Movie> findByMovieTitle(@RequestParam String movieTitle, @RequestParam String username){
+        return new ResponseEntity<>(service.findByMovieByTitle(movieTitle, username), HttpStatus.OK);
     }
 
     @GetMapping("/movies/favorites")
@@ -40,15 +40,15 @@ public class MovieController {
         return new ResponseEntity<>(service.findFavoriteMovies(), HttpStatus.OK);
     }
 
-    @PutMapping("/movies")
-    public ResponseEntity<Movie> updateMovie(@RequestParam String movieTitle,
-                                             @Valid @RequestBody Movie movie){
-        return new ResponseEntity<>(service.updateMovie(movieTitle, movie), HttpStatus.OK);
-    }
-
-//    @DeleteMapping("/movies")
-//    public ResponseEntity<Boolean> deleteByMovieTitle(@RequestParam String poster_path){
-//        return new ResponseEntity<>(service.deleteMovie(poster_path), HttpStatus.OK);
+//    @PutMapping("/movies")
+//    public ResponseEntity<Movie> updateMovie(@RequestParam String movieTitle,
+//                                             @Valid @RequestBody Movie movie){
+//        return new ResponseEntity<>(service.updateMovie(movieTitle, movie), HttpStatus.OK);
 //    }
+
+    @DeleteMapping("/movies/{username}")
+    public ResponseEntity<Boolean> deleteByMovieTitle(@PathVariable String username, @RequestParam Long id){
+        return new ResponseEntity<>(service.deleteMovie(username, id), HttpStatus.OK);
+    }
 
 }

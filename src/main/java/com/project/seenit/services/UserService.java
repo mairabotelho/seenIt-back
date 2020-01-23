@@ -1,6 +1,5 @@
 package com.project.seenit.services;
 
-
 import com.project.seenit.config.JwtProvider;
 import com.project.seenit.models.LoginRequest;
 import com.project.seenit.models.Users;
@@ -12,7 +11,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 
 @Service
 public class UserService{

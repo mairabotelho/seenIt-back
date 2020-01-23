@@ -9,12 +9,14 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MovieRepository extends CrudRepository<Movie, String> {
 
-    @Query("SELECT c FROM Movie c WHERE c.username = ?1 AND c.watchlist = false")
+    @Query("SELECT c FROM Movie c WHERE c.username = ?1 AND c.watchlist = false ORDER BY c.title ASC")
     Iterable<Movie> findMoviesByUsername(String username);
 
-    @Query("SELECT c FROM Movie c WHERE c.username = ?1 AND c.title = ?2")
-    Movie findMovieByTitle(String username, String title);
+    @Query("SELECT c FROM Movie c WHERE c.title = ?1 AND c.username = ?2")
+    Movie findMovieByTitleAndUsername(String title, String username);
 
     @Query("SELECT c FROM Movie c WHERE c.username = ?1 AND c.favorite = true")
     Iterable<Movie> findMovieByUsernameAndFavorite(String username);
+
+    boolean deleteMovieByUsernameAndId(String username, Long id);
 }
