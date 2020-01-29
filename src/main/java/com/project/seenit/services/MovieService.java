@@ -5,6 +5,8 @@ import com.project.seenit.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
 @Service
 public class MovieService {
 
@@ -18,7 +20,10 @@ public class MovieService {
     }
 
     public Movie addMovieToUser(Movie movie) {
-        return repository.save(movie);
+        if (repository.findMovieByIdAndUsername(movie.getId(), movie.getUsername()) == null)
+            return repository.save(movie);
+
+        return null;
     }
 
     public Iterable<Movie> findUsersMovieList(String username) {

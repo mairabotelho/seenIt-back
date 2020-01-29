@@ -21,8 +21,7 @@ public class Movie {
     private String poster_path;
     private String backdrop_path;
     private String popularity;
-    private String comment;
-    private Double rate;
+
     private boolean favorite;
     private boolean watchlist;
 
@@ -108,22 +107,6 @@ public class Movie {
 
     public void setPopularity(String popularity) {
         this.popularity = popularity;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public Double getRate() {
-        return rate;
-    }
-
-    public void setRate(Double rate) {
-        this.rate = rate;
     }
 
     public boolean isFavorite() {
